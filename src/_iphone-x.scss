@@ -3,6 +3,27 @@ $device-silver: #e2e3e4;
 $device-silver-dark: darken($device-silver, 10%);
 $device-silver-panel: #222;
 
+#bg {
+  width: 100vw;
+}
+#opacity {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(227, 246, 245, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+#content {
+  transform: rotate(-20deg);
+  width: 40vw;
+  height: 1050px;
+  top: 0;
+  right: 50px;
+  overflow: hidden;
+  position: fixed;
+  background: transparent;
+}
 .device-iphone-x {
   height: 868px;
   width: 428px;
@@ -10,23 +31,33 @@ $device-silver-panel: #222;
   .device-frame {
     background: $device-silver-panel;
     border-radius: 68px;
-    box-shadow: inset 0 0 2px 2px $device-silver-dark, inset 0 0 0 7px $device-silver;
+    box-shadow: inset 0 0 2px 2px $device-silver-dark,
+      inset 0 0 0 7px $device-silver;
     height: 868px;
     padding: 28px;
     width: 428px;
   }
 
+  .device-status-bar {
+    width: 375px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-top: 1px solid black; // This fixes a bug which I don't understand
+  }
   // 2436-by-1125-pixel resolution
   .device-content {
     border-radius: 40px;
-    height: 812px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    height: 763px;
     width: 375px;
+    overflow: hidden;
   }
 
   .device-stripe {
     &::after,
     &::before {
-      border: solid rgba(#333, .25);
+      border: solid rgba(#333, 0.25);
       border-width: 0 7px;
       content: "";
       height: 7px;
@@ -63,11 +94,23 @@ $device-silver-panel: #222;
       width: 10px;
     }
     &::after {
-      background: radial-gradient(circle at bottom left, transparent 0, transparent 75%, $device-silver-panel 75%, $device-silver-panel 100%);
+      background: radial-gradient(
+        circle at bottom left,
+        transparent 0,
+        transparent 75%,
+        $device-silver-panel 75%,
+        $device-silver-panel 100%
+      );
       left: -10px;
     }
     &::before {
-      background: radial-gradient(circle at bottom right, transparent 0, transparent 75%, $device-silver-panel 75%, $device-silver-panel 100%);
+      background: radial-gradient(
+        circle at bottom right,
+        transparent 0,
+        transparent 75%,
+        $device-silver-panel 75%,
+        $device-silver-panel 100%
+      );
       right: -10px;
     }
   }
